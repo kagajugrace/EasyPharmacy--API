@@ -4,15 +4,27 @@ import dotenv from "dotenv";
 import Mongoose  from "mongoose";
 import userRouter from "./src/routes/userRouter";
 
+import OrderRouter from "./src/routes/orderRoutes";
+
+import drugRouter from "./src/routes/drugRoutes";
+
+
 dotenv.config("./.env");
 
 
 const app = express();
 
 app.use(bodyParser.json());
+
 app.use("/user",userRouter);
+
+app.use("/order",OrderRouter);
+
+app.use("/drug",drugRouter);
+
+
 app.use("/", (req,res)=> res.status(200).json({
-    message:"The tour API doesn't exist"
+    message:"The  API doesn't exist"
 })  );
 
 const dbUrl=process.env.DATABASEURL;
