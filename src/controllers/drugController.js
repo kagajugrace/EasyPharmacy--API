@@ -53,6 +53,40 @@ class DrugController {
         .json({message:"Drug deleted successfully", data: drug});
     }
 
+    // update drug
+
+    static async getOneDrug(req,res){
+        // req.body.user = req.user._id;
+        const drug = await drugInfos.findById(req.params.id);
+
+
+        if(!drug){
+            return res.status(404).json({error:"Drug  is not found"})
+        }
+
+        return res
+        .status(200)
+        .json({message:"Drug found successfully", data: drug});
+    }
+
+    // delete by id
+
+    
+    
+    static async updateOneDrug(req,res){
+        // req.body.user = req.user._id;
+        const drug = await drugInfos.findByIdAndUpdate(req.params.id , req.body,{new:true});
+
+
+        if(!drug){
+            return res.status(404).json({error:"Drug  is not updated"})
+        }
+
+        return res
+        .status(200)
+        .json({message:"Drug updated successfully", data: drug});
+    }
+
 
     // get all drugs
 
