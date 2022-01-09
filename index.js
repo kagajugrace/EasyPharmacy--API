@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import Mongoose  from "mongoose";
-import userRouter from "./src/routes/payroutes";
+import payRouter from "./src/routes/payroutes";
 
 dotenv.config("./.env");
 
@@ -11,7 +11,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use("/pay",userRouter);
+app.use("/pay",payRouter);
 
 app.use("/", (req,res)=> res.status(200).json({
     message:"The tour API doesn't exist"
