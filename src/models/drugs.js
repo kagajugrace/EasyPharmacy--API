@@ -6,8 +6,14 @@ const drugSchema = new mongoose.Schema(
         name:String,
         description: String,
         ingredients:String,
-        manufacturedDate:String,
-        expiring:String,
+        manufacturedDate:{
+            type:String,
+            required:true,
+        },
+        expiring:{
+            type:String,
+            required:true,
+        },
         userId:String,
         availableDrugs:String,
         status:{
