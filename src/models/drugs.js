@@ -5,7 +5,10 @@ const drugSchema = new mongoose.Schema(
     {
         name:String,
         description: String,
-        ingredients:String,
+        ingredients:{
+            type:String,
+            required:true,
+        },
         manufacturedDate:{
             type:String,
             required:true,
