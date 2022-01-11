@@ -1,18 +1,21 @@
 
 import UserInfos from"../models/user";
+import bcrypt from "bcrypt"
+ import TokenAuth from "../helpers/tokenAuth";
 
 
 
 class userController{
     // create a user
     static async createUser(req, res) {
-        
-        const user = await UserInfos.create(req.body);
-        if (!user) {
-          return res.status(404).json({ Error: "user note registed" })
-        }
-    
-        return res.status(200).json({ message: "user created successeful", data: user });
+      req.body.password = bcrypt.hashSync(req.body.password, 10);
+      const user = await UserInfos.create(req.body);
+      if (!user) {
+        return res.status(404).json({ Error: "user note registed" })
+      }
+  
+      return res.status(200).json({ message: "user created successeful", data: user });
+  
     }
     
     // delete one user
@@ -40,6 +43,7 @@ static async getAllUsers(req, res) {
 
 
   }
+   
   // get one user in db
 
 
@@ -64,6 +68,28 @@ static async getAllUsers(req, res) {
      return res
      .status(200)
      .json({message:" user updated successfully", data: user});
+  }
+  //  login
+  static async userLogin(req, res) {
+    
+    const user = await UserInfos.findOne({$or:[{email:req.body.email},{ phone:req.body.phone}]});
+  // console.log(user)
+
+    if (!user) {
+      return res.status(404).json({ Error: "user not found kindly register first" });
+    }
+    if (bcrypt.compareSync(req.body.password, user.password)) {
+      user.password = null;
+
+      const token = TokenAuth.tokenGenerator({ user:user});
+
+      return res.status(200).json({ message: "successfully login in", token: token });
+
+    }
+    return res.status(400).json({ Error: "invalid email or password" })
+
+
+  
   }
 
 
