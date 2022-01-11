@@ -1,6 +1,7 @@
 import  express  from "express";
 import DrugController from "../controllers/drugController";
-import verifyAccess from "../middlewares/verifyAccess"
+import verifyAccess from "../middlewares/verifyAccess";
+import verifyToken from "../middlewares/verifyToken";
 
 // drugRouter.post(
 //     "/create drug",
@@ -9,9 +10,9 @@ import verifyAccess from "../middlewares/verifyAccess"
 
 
 const drugRouter = express. Router();
-drugRouter.post("/register", verifyAccess("admin"), DrugController.create);
+drugRouter.post("/register", verifyToken, verifyAccess("admin"), DrugController.create);
 drugRouter.get("/all", DrugController.getAllDrugs);
-drugRouter.patch("/one/:id", verifyAccess("admin"), DrugController.updateOneDrug);
+drugRouter.patch("/one/:id", verifyToken, verifyAccess("admin"), DrugController.updateOneDrug);
 drugRouter.get("/one/:id", DrugController.getOneDrug);
-drugRouter.delete("/one/:id", verifyAccess("admin"), DrugController.deleteOneDrug);
+drugRouter.delete("/one/:id", verifyToken, verifyAccess("admin"), DrugController.deleteOneDrug);
 export default drugRouter;

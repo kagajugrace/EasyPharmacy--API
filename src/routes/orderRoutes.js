@@ -1,11 +1,12 @@
 import express from "express";
 import OrderController from "../controllers/OrderController";
-import verifyAccess from "../middlewares/verifyAccess"
+import verifyAccess from "../middlewares/verifyAccess";
+import verifyToken from "../middlewares/verifyToken";
 
 const OrderRouter = express. Router();
 
-OrderRouter.post("/register", verifyAccess("user"), OrderController.create);
+OrderRouter.post("/register", verifyToken, verifyAccess("user"), OrderController.create);
 OrderRouter.get("/:id",OrderController.getOneOrder);
-OrderRouter.delete("/:id", verifyAccess("admin"), OrderController.deleteOneDrug);
+OrderRouter.delete("/:id", verifyToken, verifyAccess("admin"), OrderController.deleteOneDrug);
  
 export default OrderRouter;
