@@ -1,13 +1,14 @@
 import express from "express";
 import userController from "../controllers/userController";
+import verifyAccess from "../middlewares/verifyAccess"
 
 const userRouter=express.Router();
 
-userRouter.post( "/register", userController.createUser);
+userRouter.post( "/register",verifyAccess("user"), userController.createUser);
 userRouter.get("/all", userController.getAllUsers);
 userRouter.get("/:id",userController.getOneUser);
-userRouter.delete("/:id",userController.deleteOneUser);
-userRouter.patch("/:id",userController.updateOneUser);
+userRouter.delete("/:id",verifyAccess("admin"), userController.deleteOneUser);
+userRouter.patch("/:id",verifyAccess("admin"), userController.updateOneUser);
 
 
     
