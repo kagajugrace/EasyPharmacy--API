@@ -9,7 +9,7 @@ import  userInfoS  from "../models/user";
          
          const token=req.header("x-auth-token");
          if(!token){
-         return res.status(400).json({error:"no token providede"})
+         return res.status(400).json({error:"no token provided"})
 
      }
      const data=TokenAuth.decodeToken(token);
