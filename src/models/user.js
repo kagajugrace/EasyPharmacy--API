@@ -22,11 +22,12 @@ required:true,
  role:{
      type:String,
 
-     enum:["user", "admin"],
+     enum:["user", "admin","pharmacy-admin"],
  },
  phone:{
      type:String,
      required:true,
+     unique: true,
 
  },
  email:{
