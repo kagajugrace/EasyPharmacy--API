@@ -11,10 +11,10 @@ class userController{
       req.body.password = bcrypt.hashSync(req.body.password, 10);
       const user = await UserInfos.create(req.body);
       if (!user) {
-        return res.status(404).json({ Error: "user note registed" })
+        return res.status(404).json({ Error: "user not registed" })
       }
   
-      return res.status(200).json({ message: "user created successeful", data: user });
+      return res.status(200).json({ message: "user created successfully", data: user });
   
     }
     
@@ -25,7 +25,7 @@ class userController{
           return res.status(404).json({ Error: "user not found" })
         }
     
-        return res.status(200).json({ message: "user delete", data: user });
+        return res.status(200).json({ message: "user deleted successfully", data: user });
     
     
     
@@ -36,10 +36,10 @@ class userController{
 static async getAllUsers(req, res) {
     const user = await UserInfos.find();
     if (!user) {
-      return res.status(404).json({ Error: "user note retrieves well" })
+      return res.status(404).json({ Error: "user not retrieved well" })
     }
 
-    return res.status(200).json({ message: " successeful retrieved user", data: user });
+    return res.status(200).json({ message: " successfully retrieved user", data: user });
 
 
   }
@@ -50,10 +50,10 @@ static async getAllUsers(req, res) {
   static async getOneUser(req, res) {
     const user = await UserInfos.findById(req.params.id);
     if (!user) {
-      return res.status(404).json({ Error: "user note found" })
+      return res.status(404).json({ Error: "user not found" })
     }
 
-    return res.status(200).json({ message: "user found", data: user });
+    return res.status(200).json({ message: "user found successfully", data: user });
 
 
 

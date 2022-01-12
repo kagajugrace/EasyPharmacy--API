@@ -3,6 +3,8 @@ import mongoose from "mongoose"
 
 const drugSchema = new mongoose.Schema(
     {
+
+
         name:String,
         description: String,
         ingredients:String,
