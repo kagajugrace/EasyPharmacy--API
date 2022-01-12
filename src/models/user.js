@@ -5,8 +5,8 @@ import mongoose from "mongoose";
  const userSchema= new mongoose.Schema(
      {
 
- Firstname:String,
- Lastname:String,
+ firstname:String,
+ lastname:String,
 password:{
 type:String,
 required:true,
@@ -15,14 +15,14 @@ required:true,
      type:String,
      enum: [ "female", "male"],
  },
- adress:{
+ address:{
      type:String,
      required:true,
  },
  role:{
      type:String,
 
-     enum:["user", "admin","pharmacy-admin"],
+     enum:["user", "admin","pharmacyadmin"],
  },
  phone:{
      type:String,

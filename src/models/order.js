@@ -2,17 +2,28 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
 
-    userId:{
-        type:String,
+    user:{
+        type:mongoose.Schema.ObjectId,
         ref:"User"
     },
-    drugId:{
-       type:String,
+    drug:{
+       type:mongoose.Schema.ObjectId,
+       ref:"Drug"
     },
+    payment:{
+      type:mongoose.Schema.ObjectId,
+      ref:"payment"
+    },
+    paymentStatus:{
+     type:String,
+     enum:["pending" , "cancelled", "accepted"],
+     default: "pending",
+     },
+    location:String,
     status:{
         type:String,
-        enum:["pending","ordered","not ordered"],
-        pending:["pending"],
+        enum:["ordered","not ordered"],
+        default:"not ordered"
     },
  },
   {
@@ -20,7 +31,15 @@ const orderSchema = new mongoose.Schema({
   }
 );
 
-      
+   orderSchema.pre(/^find/, function (next){
+     this.populate({
+       path:"user",
+       select:"lastname  email age address phone",
+     }).populate({
+       path: "drug",
+     });
+     next();
+   });   
 
 const Order = mongoose.model("Order", orderSchema);
 
