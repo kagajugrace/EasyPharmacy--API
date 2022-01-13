@@ -1,4 +1,5 @@
 import orderInfos from "../models/order";
+import sendSms from "../helpers/sms"
 
 class OrderController {
 
@@ -64,16 +65,17 @@ static async create(req,res) {
     return res.status(200).json({message: "All orders by drug id are successfully viewed", data: orders });
   }
 
-  // function that will send sms
+  //send sms
 
    static async sendOrderSms(req,res) {
-     const {id,status}=red.body
+     const {id,status}=req.body
      const order = await
      orderInfos.findByIdAndUpdate(id,{status:status},{new:true})
      if(!order) {
-       return res.status(404).json({error: "failed to update status"});
+       return res.status(404).json({error: " failed to update status"});
      }
-     sendSms (order.user.Lastname,order.drug.name,order.status.order._id,order.user.phone)
+     console.log(order)
+     sendSms(order.user.firstname, order.status, order._id, order.user.phone)
      return res.status(200).json({ message : "ordered successfull" , data:order})
    }
   //delete one order by id
