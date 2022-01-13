@@ -10,11 +10,15 @@ const client = require("twilio")(
 const sendSms=(userName,orderId,applicationId,userPhone)=>{
     client.messages.create({ body:
     "Dear " +
-    userName + 
-    "your order " +
-    orderId +
-    "has been received successfully it will be delivered  to you AS SOON AS POSSIBLE" +
-    "refId" +
+    userName + " "
+    +
+    "your order was" + " " 
+    +
+    orderId +" " +
+    "and it will be delivered  to you AS SOON AS POSSIBLE" + " "
+    +
+    "your refId is" +  " "
+    +
     applicationId,
     from:"+1(769)210-5725",
     to:userPhone

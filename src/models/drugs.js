@@ -27,7 +27,7 @@ const drugSchema = new mongoose.Schema(
 drugSchema.pre(/^find/, function (next){
     this.populate({
       path:"pharmacyadmin",
-      select:"lastname email age address phone",
+      select:"firstname email age address phone",
     });
     next();
   });   
