@@ -3,6 +3,11 @@ import mongoose from "mongoose"
 
 const drugSchema = new mongoose.Schema(
     {
+        pharmacyadmin:{
+            type:mongoose.Schema.ObjectId,
+            ref:"User"
+        },
+
         name:String,
         description: String,
         ingredients:{
@@ -18,6 +23,9 @@ const drugSchema = new mongoose.Schema(
             required:true,
         },
         userId:String,
+        ingredients:String,
+        manufacturedDate:String,
+        expiring:String,
         availableDrugs:String,
         status:{
             type:String,
@@ -28,5 +36,14 @@ const drugSchema = new mongoose.Schema(
         timestamps: true,
     }
 );
-const drug = mongoose.model('Drug',drugSchema);
-export default drug
+
+drugSchema.pre(/^find/, function (next){
+    this.populate({
+      path:"pharmacyadmin",
+      select:"firstname email age address phone",
+    });
+    next();
+  });   
+
+const Drug = mongoose.model('Drug',drugSchema);
+export default Drug
