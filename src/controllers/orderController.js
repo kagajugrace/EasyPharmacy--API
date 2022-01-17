@@ -12,7 +12,7 @@ static async create(req,res) {
     if(!order){
         return res.status(404).json({error:"Order not registered"})
     }
-
+    
     return res
        .status(200)
        .json({message:"Order create successfully", data: order});
@@ -74,8 +74,15 @@ static async create(req,res) {
      if(!order) {
        return res.status(404).json({error: " failed to update status"});
      }
+
+     let sum =0;
+     let names =[];
+     order.drug.forEach(element => {
+       sum=sum+ parseInt(element.price)
+       names.push(element.name)
+     });
      console.log(order)
-     sendSms(order.user.firstname, order.status, order._id, order.user.phone)
+     sendSms(order.user.firstname, names.toString(),sum,order.status, order._id ,order.user.phone)
      return res.status(200).json({ message : "ordered successfull" , data:order})
    }
   //delete one order by id

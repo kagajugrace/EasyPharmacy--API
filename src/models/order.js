@@ -6,10 +6,10 @@ const orderSchema = new mongoose.Schema({
         type:mongoose.Schema.ObjectId,
         ref:"User"
     },
-    drug:{
+    drug:[{
        type:mongoose.Schema.ObjectId,
        ref:"Drug"
-    },
+    }],
     payment:{
       type:mongoose.Schema.ObjectId,
       ref:"payment"
@@ -34,7 +34,7 @@ const orderSchema = new mongoose.Schema({
    orderSchema.pre(/^find/, function (next){
      this.populate({
        path:"user",
-       select:"firstname  email age address phone",
+       select:"firstname email age address phone",
      }).populate({
        path: "drug",
      });

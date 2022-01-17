@@ -7,7 +7,7 @@ const drugSchema = new mongoose.Schema(
             type:mongoose.Schema.ObjectId,
             ref:"User"
         },
-
+        price:String,
         name:String,
         description: String,
         ingredients:{
