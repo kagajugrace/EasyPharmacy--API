@@ -1,4 +1,5 @@
 import UserInfos from "../models/user";
+import PharmacyInfos from "../models/pharmacy";
 
 class DataChecker{
 
@@ -19,6 +20,14 @@ class DataChecker{
             return next();
         }
         return res.status(401).json({error:"Phone already exist"})
+    }
+
+    static async isPharmacyExist(req,res,next){
+        const user = await PharmacyInfos.findOne({name: req.body.name});
+        if(!user){
+            return next();
+        }
+        return res.status(401).json({error:"Pharmacy name already exist"})
     }
 }
 

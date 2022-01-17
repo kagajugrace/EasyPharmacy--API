@@ -1,4 +1,5 @@
 import orderInfos from "../models/order";
+import drugInfos from "../models/drugs";
 import sendSms from "../helpers/sms"
 
 class OrderController {
@@ -7,7 +8,20 @@ class OrderController {
 
 static async create(req,res) {
     //req.body.order = req.order._id;
+
+
+  //   const availableData={
+  //     user:req.user._id,
+  //     Drug:req.params.id
+  // };
+  
     const order = await orderInfos.create(req.body);
+
+    // const order = await orderInfos.create(availableData);
+
+  //   const Drug= await drugInfos.findById(req.params.id);
+  // const availableDrug= Drug.availableDrugs-1;
+  // await drugInfos.findByIdAndUpdate(req.params.id,{availableDrugs:availableDrug});
 
     if(!order){
         return res.status(404).json({error:"Order not registered"})
@@ -92,6 +106,24 @@ static async create(req,res) {
       .status(200)
       .json({message:"Order is deleted successfully", data: order});
  }
+
+
+//  static async availableDrug (req, res){
+//   const availableData={
+//       user:req.user._id,
+//       Drug:req.params.id
+//   };
+//   const order = await orderInfos.create(availableData);
+
+//   const Drug= await drugInfos.findById(req.params.id);
+//   const availableDrug= Drug.availableDrugs-1;
+//   await drugInfos.findByIdAndUpdate(req.params.id,{availableDrugs:availableDrug});
+
+//   if(!order){
+//   return res.status(404).json({error:"failed to book"});
+// }
+// return res.status(200).json({message:"booked succefully", data: order})
+// }
 
   }
   

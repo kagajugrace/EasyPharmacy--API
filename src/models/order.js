@@ -6,10 +6,10 @@ const orderSchema = new mongoose.Schema({
         type:mongoose.Schema.ObjectId,
         ref:"User"
     },
-    drug:{
+    drug:[{
        type:mongoose.Schema.ObjectId,
        ref:"Drug"
-    },
+    }],
     payment:{
       type:mongoose.Schema.ObjectId,
       ref:"payment"

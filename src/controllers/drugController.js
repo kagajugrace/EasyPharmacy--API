@@ -1,5 +1,6 @@
 import drugInfos from "../models/drugs"
-
+import Pharmacy from "../models/pharmacy";
+import pharmacyInfos from "../models/pharmacy";
 class DrugController {
 
 
@@ -103,6 +104,19 @@ class DrugController {
         .status(200)
         .json({message:"Drugs found successfully", data: drugs});
     }
+
+
+     static async getAllDrugsByPharmacyName(req,res) {
+
+        const Pharmacy = await pharmacyInfos.findOne({name:req.params.name})
+
+
+    const drugs = await drugInfos.find({pharmacy:Pharmacy._id});
+    if (!drugs) {
+      return res.status(404).json({error: "Not found"});
+    }
+    return res.status(200).json({message: "All drugs by pharmacy name are successfully viewed", data: drugs });
+  }
 
 }
 export default DrugController
