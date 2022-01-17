@@ -7,20 +7,25 @@ const client = require("twilio")(
   process.env.TWILIO_AUTH_ID
 );
 
-const sendSms=(userName,orderId,applicationId,userPhone)=>{
+const sendSms=(userName,drug,payment,status,applicationId,userPhone)=>{
+  
     client.messages.create({ body:
     "Dear " +
     userName + " "
     +
-    "your order was" + " " 
+    "your" + " " +
+    drug +
+    " drug, Amount to Pay: " +
+    payment +
+    "frw " +
+    "order was" + " " +
+    status +
+    " and it will be delivered  to you AS SOON AS POSSIBLE " 
     +
-    orderId +" " +
-    "and it will be delivered  to you AS SOON AS POSSIBLE" + " "
-    +
-    "your refId is" +  " "
+    " your refId is " +  " "
     +
     applicationId,
-    from:"+1(769)210-5725",
+    from:"+1(254)347-3140",
     to:userPhone
 
     }).then((message)=> console.log(message.sid));
