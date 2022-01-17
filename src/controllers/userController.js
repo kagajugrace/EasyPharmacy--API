@@ -74,7 +74,7 @@ static async getAllUsers(req, res) {
   static async userLogin(req, res) {
     
     const user = await UserInfos.findOne({$or:[{email:req.body.email},{ phone:req.body.phone}]});
-  // console.log(user)
+  console.log(user)
 
     if (!user) {
       return res.status(404).json({ Error: "user not found kindly register first" });
