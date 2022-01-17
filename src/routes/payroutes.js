@@ -6,10 +6,10 @@ import verifyToken from "../middlewares/verifyToken";
 const payRouter= express.Router();
 
 
-payRouter.post("/payment", verifyToken, verifyAccess("admin"), PaymentController.createPayment);
-payRouter.get("/all", verifyToken, verifyAccess("admin"), PaymentController.getAllPayment);
-payRouter.get("/:id", PaymentController.getOnePayment);
-payRouter.delete("/:id", verifyToken, verifyAccess("admin"), PaymentController.deleteOnePayment);
+payRouter.post("/payment", verifyToken, verifyAccess("user"), PaymentController.createPayment);
+payRouter.get("/all", verifyToken, verifyAccess("pharmacyadmin"), PaymentController.getAllPayment);
+payRouter.get("/:id",verifyToken, verifyAccess("pharmacyadmin"), PaymentController.getOnePayment);
+payRouter.delete("/:id", verifyToken, verifyAccess("pharmacyadmin"), PaymentController.deleteOnePayment);
 
 
 

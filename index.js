@@ -11,6 +11,8 @@ import OrderRouter from "./src/routes/orderRoutes";
 
 import drugRouter from "./src/routes/drugRoutes";
 
+import PharmacyRouter from "./src/routes/pharmacyRoutes"
+
 
 dotenv.config("./.env");
 
@@ -27,6 +29,8 @@ app.use("/user",userRouter);
 app.use("/order",OrderRouter);
 
 app.use("/drug",drugRouter);
+
+app.use("/pharmacy",PharmacyRouter);
 
 
 

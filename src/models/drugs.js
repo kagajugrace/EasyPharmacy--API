@@ -7,7 +7,14 @@ const drugSchema = new mongoose.Schema(
             type:mongoose.Schema.ObjectId,
             ref:"User"
         },
-        price:String,
+
+
+        pharmacy:{
+            type:mongoose.Schema.ObjectId,
+            ref:"Pharmacy"
+        },
+
+
         name:String,
         description: String,
         ingredients:{
@@ -26,7 +33,8 @@ const drugSchema = new mongoose.Schema(
         ingredients:String,
         manufacturedDate:String,
         expiring:String,
-        availableDrugs:String,
+        availableDrugs:Number,
+        price: String,
         status:{
             type:String,
             enum:["available","not available"]
@@ -37,13 +45,28 @@ const drugSchema = new mongoose.Schema(
     }
 );
 
+// drugSchema.pre(/^find/, function (next){
+//     this.populate({
+//       path:"pharmacyadmin",
+//       select:"firstname email  phone",
+//     }).populate({
+//         path: "pharmacy",
+        
+//       });
+//     next();
+//   });  
+
 drugSchema.pre(/^find/, function (next){
     this.populate({
       path:"pharmacyadmin",
-      select:"firstname email age address phone",
-    });
+      select:"firstname email  phone",
+    }).populate({
+        path: "pharmacy",
+        
+        
+      });
     next();
-  });   
+  });  
 
 const Drug = mongoose.model('Drug',drugSchema);
 export default Drug
