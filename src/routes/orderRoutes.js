@@ -1,6 +1,5 @@
 import express from "express";
 import OrderController from "../controllers/OrderController";
-import userController from "../controllers/userController";
 import verifyAccess from "../middlewares/verifyAccess";
 import verifyToken from "../middlewares/verifyToken";
 
