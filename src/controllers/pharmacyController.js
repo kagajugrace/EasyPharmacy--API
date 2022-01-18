@@ -49,7 +49,7 @@ static async create(req,res) {
   static async getAllPharmacyByDrugName(req,res) {
 
     const Drug = await drugInfos.findOne({name:req.params.name})
-
+console.log(Drug)
 
     const pharmacies = await pharmacyInfos.find({drug:Drug._id});
 
