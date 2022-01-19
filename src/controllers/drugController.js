@@ -54,7 +54,7 @@ class DrugController {
         .json({message:"Drug deleted successfully", data: drug});
     }
 
-    // update drug
+    // get drug
 
     static async getOneDrug(req,res){
         // req.body.user = req.user._id;
@@ -70,7 +70,7 @@ class DrugController {
         .json({message:"Drug found successfully", data: drug});
     }
 
-    // delete by id
+    // update drug
 
     
     
