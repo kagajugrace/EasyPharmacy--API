@@ -8,7 +8,6 @@ const drugSchema = new mongoose.Schema(
             ref:"User"
         },
 
-
         pharmacy:{
             type:mongoose.Schema.ObjectId,
             ref:"Pharmacy"

@@ -26,7 +26,6 @@ const sendSms=(userName,drug,payment,status,applicationId,userPhone)=>{
     +
     applicationId,
     from:"+1(254)347-3140",
-
     // from:"+1(629)209-6564",
 
 
