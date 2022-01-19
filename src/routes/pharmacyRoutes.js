@@ -1,5 +1,5 @@
 import express from "express";
-import PharmacyController from "../controllers/PharmacyController";
+import PharmacyController from "../controllers/pharmacyController";
 import verifyAccess from "../middlewares/verifyAccess";
 import verifyToken from "../middlewares/verifyToken";
 import DataChecker from "../middlewares/datachecker";
