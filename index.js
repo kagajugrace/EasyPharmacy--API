@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import Mongoose  from "mongoose";
-
+import cors from "cors"
 import payRouter from "./src/routes/payroutes";
 
 import userRouter from "./src/routes/userRouter";
@@ -18,6 +18,7 @@ dotenv.config("./.env");
 
 
 const app = express();
+app.use(cors())
 
 app.use(bodyParser.json());
 
