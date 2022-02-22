@@ -38,18 +38,7 @@ required:true,
      required:true,
      unique: true,
  },
- pharmacyadmin:{
-     pharmacyName:
-     {
-         type:String,
-     },
-    tinNumber:{
-        type:String,
-    },
-    pharmacyAddress:{
-       type:String,
-    }
-},
+
  email:{
      type:String,
      required:true,
