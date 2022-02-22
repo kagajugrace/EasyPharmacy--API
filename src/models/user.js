@@ -19,6 +19,20 @@ required:true,
      type:String,
      enum:["user", "admin","pharmacyadmin"],
  },
+
+ pharmacyadmin:{
+    pharmacyName:
+    {
+        type:String,
+    },
+   tinNumber:{
+       type:String,
+   },
+   pharmacyAddress:{
+      type:String,
+   }
+},
+
  phone:{
      type:String,
      required:true,

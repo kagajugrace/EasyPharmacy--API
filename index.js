@@ -11,6 +11,8 @@ import OrderRouter from "./src/routes/orderRoutes";
 
 import drugRouter from "./src/routes/drugRoutes";
 
+import cors from "cors";
+
 import PharmacyRouter from "./src/routes/pharmacyRoutes"
 
 
@@ -19,6 +21,8 @@ dotenv.config("./.env");
 
 const app = express();
 app.use(cors())
+
+app.use (cors())
 
 app.use(bodyParser.json());
 
